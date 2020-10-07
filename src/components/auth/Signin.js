@@ -67,6 +67,8 @@ const Signin = ({history}) => {
             {isAuth() ? <Redirect to=""/> : null}
             <h1>Signin</h1>
             {signinForm()}
+            <Link to="/auth/password/forgot"> Forgot password</Link>
+
         </Layout>
     )
 }

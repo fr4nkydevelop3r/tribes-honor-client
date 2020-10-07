@@ -69,6 +69,8 @@ const Signup = () => {
             {isAuth() ? <Redirect to=""/> : null}
             <h1>Signup</h1>
             {signupForm()}
+            <Link to="/auth/password/forgot"> Forgot password</Link>
+
         </Layout>
     )
 }
