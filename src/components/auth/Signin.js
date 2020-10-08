@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import axios from 'axios';
+import Google from './Google';
 import {authenticate, isAuth} from './helpers'
 import Layout from '../Layout';
 
@@ -19,6 +20,12 @@ const Signin = ({history}) => {
 
     const handleChange = (value) => (event) => {
         setValues({...values, [value]:event.target.value })
+    }
+
+    const informParent = response => {
+        authenticate(response, () => {
+            isAuth() && isAuth().role === 'admin' ? history.push('/admin') : history.push('private');
+        })
     }
 
     const handleSubmit = event => {
@@ -66,6 +73,7 @@ const Signin = ({history}) => {
             <ToastContainer />
             {isAuth() ? <Redirect to=""/> : null}
             <h1>Signin</h1>
+            <Google informParent = {informParent}/>
             {signinForm()}
             <Link to="/auth/password/forgot"> Forgot password</Link>
 
