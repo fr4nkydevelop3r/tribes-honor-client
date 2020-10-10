@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import axios from 'axios';
 import Google from './Google';
+import Facebook from './Facebook';
+
 import {authenticate, isAuth} from './helpers'
 import Layout from '../Layout';
 
@@ -74,6 +76,7 @@ const Signin = ({history}) => {
             {isAuth() ? <Redirect to=""/> : null}
             <h1>Signin</h1>
             <Google informParent = {informParent}/>
+            <Facebook informParent = {informParent}/>
             {signinForm()}
             <Link to="/auth/password/forgot"> Forgot password</Link>
 
