@@ -11,8 +11,8 @@ import Layout from '../Layout';
 const Signup = () => {
 
     const [values, setValues] = useState({
-        name: 'Frank',
-        email: 'fr4nky.develop3r@gmail.com',
+        name: '',
+        email: '',
         password: '',
         buttonText: 'Submit'
     })

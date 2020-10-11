@@ -18,8 +18,8 @@ const Facebook = ({informParent}) => {
             informParent(response);
         })
         .catch(error => {
-            alert('ERROR')
-            alert('FACEBOOK SIGNIN ERROR', error)
+            //alert('ERROR')
+            //alert('FACEBOOK SIGNIN ERROR', error)
             console.log('FACEBOOK SIGNIN ERROR', error.response);
         }) 
     }
