@@ -1,13 +1,13 @@
 import React from 'react';
-import Layout from './components/Layout'
+import Layout from './components/Layout';
+import './styles/main.scss';
 
 const App = () => {
-  return(
+  return (
     <Layout>
       <h1>Hello react!</h1>
     </Layout>
-  )
-}
-
+  );
+};
 
 export default App;

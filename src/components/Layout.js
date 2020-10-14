@@ -1,15 +1,12 @@
 import React from 'react';
-import Navigation from './shared/Navigation'
-const Layout = ({children}) => {
-
-    return (
-        <>
-            <Navigation />
-            <div className="container">
-                {children}
-            </div>
-        </>
-    )
-}
+import Header from './shared/Header';
+const Layout = ({ children }) => {
+  return (
+    <>
+      <Header />
+      <div className="container">{children}</div>
+    </>
+  );
+};
 
 export default Layout;
