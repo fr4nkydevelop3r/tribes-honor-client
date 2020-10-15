@@ -5,7 +5,7 @@ import './styles/main.scss';
 const App = () => {
   return (
     <Layout>
-      <h1>Hello react!</h1>
+      <h1>Hello reactt!</h1>
     </Layout>
   );
 };

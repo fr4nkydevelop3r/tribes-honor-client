@@ -8,9 +8,9 @@ const Navigation = ({ match, history }) => {
   const [showMenu, setShowMenu] = useState(false);
   const isActive = (path) => {
     if (match.path === path) {
-      return { color: 'pink' };
+      return { color: 'white' };
     } else {
-      return { color: 'green' };
+      return { color: 'pink' };
     }
   };
 
@@ -36,6 +36,14 @@ const Navigation = ({ match, history }) => {
 
           {!isAuth() && (
             <>
+              <li>
+                <Link
+                  to="/tribes"
+                  className="nav-links"
+                  style={isActive('/tribes')}>
+                  Tribes
+                </Link>
+              </li>
               <li>
                 <Link
                   to="/about"
