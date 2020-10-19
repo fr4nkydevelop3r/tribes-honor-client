@@ -1,8 +1,8 @@
-import { RECEIVE_TRIBES } from '../actions/tribes';
+import { GET_TRIBES, GET_TRIBES_ERROR } from '../actions/tribes';
 
 export default function tribes(state = {}, action) {
   switch (action.type) {
-    case RECEIVE_TRIBES:
+    case GET_TRIBES:
       return {
         ...state,
         ...action.tribes,

@@ -8,9 +8,9 @@ const Navigation = ({ match, history }) => {
   const [showMenu, setShowMenu] = useState(false);
   const isActive = (path) => {
     if (match.path === path) {
-      return { color: 'white' };
+      return { color: '#06d6a0' };
     } else {
-      return { color: 'pink' };
+      return { color: '#118ab2' };
     }
   };
 
@@ -25,7 +25,7 @@ const Navigation = ({ match, history }) => {
           <FontAwesomeIcon icon={faBars} />
         </span>
         <Link className="logo" to="/">
-          Logo
+          TribusMen
         </Link>
         <ul className={`main-nav ${showMenu ? 'active' : ''}`}>
           <li>

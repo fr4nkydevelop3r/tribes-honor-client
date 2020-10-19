@@ -1,0 +1,19 @@
+.form {
+  width: 300px;
+  height: 300px;
+  border: 1px solid yellowgreen;
+  color: $peacock-blue;
+  .title-form {
+    text-align: center;
+  }
+  .row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .first-row {
+    margin-top: 2rem;
+    border: 1px solid gold;
+    @extend .row;
+  }
+}

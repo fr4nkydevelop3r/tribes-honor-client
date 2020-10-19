@@ -12,3 +12,9 @@ h6 {
   font-family: $monserrat;
   font-weight: 900;
 }
+main {
+  margin: 2rem auto 2rem;
+  max-width: 90vw;
+  width: 1200px;
+  border: 1px solid $carmen-red;
+}

@@ -47,38 +47,40 @@ const Signup = () => {
   };
 
   const signupForm = () => (
-    <form>
-      <div>
-        <label>Name</label>
-        <input onChange={handleChange('name')} type="text" value={name} />
-      </div>
-      <div>
-        <label>Email</label>
-        <input onChange={handleChange('email')} type="email" value={email} />
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          onChange={handleChange('password')}
-          type="password"
-          value={password}
-        />
-      </div>
-      <div>
-        <button type="submit" onClick={handleSubmit}>
-          {buttonText}
-        </button>
-      </div>
-    </form>
+    <div className="signup-container">
+      <form className="form">
+        {<h1 className="title-form">Create account</h1>}
+        <div className="first-row">
+          <label>FULL NAME</label>
+          <input onChange={handleChange('name')} type="text" value={name} />
+        </div>
+        <div className="row">
+          <label>Email</label>
+          <input onChange={handleChange('email')} type="email" value={email} />
+        </div>
+        <div className="row">
+          <label>PASSWORD</label>
+          <input
+            onChange={handleChange('password')}
+            type="password"
+            value={password}
+          />
+        </div>
+        <div>
+          <button type="submit" onClick={handleSubmit}>
+            {buttonText}
+          </button>
+        </div>
+        <Link to="/auth/password/forgot"> Forgot password</Link>
+      </form>
+    </div>
   );
 
   return (
     <Layout>
       <ToastContainer />
       {isAuth() ? <Redirect to="" /> : null}
-      <h1>Signup</h1>
       {signupForm()}
-      <Link to="/auth/password/forgot"> Forgot password</Link>
     </Layout>
   );
 };
