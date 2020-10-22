@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getTribes } from '../actions/tribes';
 import Layout from '../components/Layout';
-
+import Card from '../components/Card';
 const Tribes = ({ getTribes, tribes }) => {
   useEffect(() => {
     getTribes();
@@ -12,7 +12,8 @@ const Tribes = ({ getTribes, tribes }) => {
 
   return (
     <Layout>
-      <h1>Tribes around the world</h1>
+      <h3 className="title">Tribes around the world</h3>
+      <Card />
     </Layout>
   );
 };
