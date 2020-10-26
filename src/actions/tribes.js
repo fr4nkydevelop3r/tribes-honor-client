@@ -4,7 +4,7 @@ export const GET_TRIBES_ERROR = 'GET_TRIBES_ERROR';
 
 export const getTribes = () => async (dispatch) => {
   try {
-    const tribes = await axios({
+    const { data: tribes } = await axios({
       method: 'GET',
       url: `${process.env.REACT_APP_API}/get-tribes`,
     });

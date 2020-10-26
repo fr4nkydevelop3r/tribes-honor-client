@@ -104,7 +104,7 @@ const Signup = () => {
           )}
         </div>
         <div className="btn-form">
-          <button className="btn" type="submit">
+          <button className="btn-auth" type="submit">
             Sign Up
           </button>
         </div>

@@ -2,3 +2,11 @@
   color: $peacock-blue;
   margin-bottom: 2rem;
 }
+.tribes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  @media screen and(min-width: $min-width) {
+    justify-content: space-around;
+  }
+}

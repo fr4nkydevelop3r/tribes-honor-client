@@ -35,11 +35,19 @@
 .card-body {
   grid-area: text;
   margin: 25px;
-  .category {
-    font-size: 14px;
-    margin-top: 1rem;
-    color: $yellow-ochre;
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .category-container {
+      .category {
+        font-size: 14px;
+        margin-top: 1rem;
+        color: $yellow-ochre;
+      }
+    }
   }
+
   .about,
   .mision,
   .outcome {

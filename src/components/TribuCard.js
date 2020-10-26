@@ -7,7 +7,7 @@ import {
   faFileAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
-const Card = () => {
+const TribuCard = () => {
   const [tribuOption, setTribuOption] = useState('about');
   const master = 'https://picsum.photos/100/100';
   const padawans = [
@@ -113,8 +113,18 @@ const Card = () => {
           <span>Houston, TX</span>
         </div>
         <div className="card-body">
-          <h3>Tribe name</h3>
-          <span className="category">#category</span>
+          <div className="card-header">
+            <div className="category-container">
+              <h4>Tribe name</h4>
+              <span className="category">#category</span>
+            </div>
+            <div className="categoryJoin">
+              <button type="button" className="btn-card">
+                JOIN
+              </button>
+            </div>
+          </div>
+
           {getTribuInfo()}
         </div>
         <div className="card-options">
@@ -150,4 +160,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default TribuCard;
