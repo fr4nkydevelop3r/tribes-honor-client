@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getTribe } from '../actions/tribes';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUserSecret,
@@ -7,7 +10,15 @@ import {
   faFileAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
-const TribuCard = () => {
+const Tribe = ({ location, match, getTribe }) => {
+  useEffect(() => {
+    if (!location.state) {
+      const { idTribe } = match.params;
+      getTribe(idTribe);
+    }
+  }, []);
+
+  //console.log(state);
   const [tribuOption, setTribuOption] = useState('about');
   const master = 'https://picsum.photos/100/100';
   const padawans = [
@@ -25,7 +36,18 @@ const TribuCard = () => {
     backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/test-food-app-d7eca.appspot.com/o/products%2FPunk_still.jpg?alt=media&token=b3304a2b-9df0-4680-90f9-2273bd09ee0e')`,
   };
 
-  console.log(padawans);
+  /*const {
+    _id: idTribe,
+    name,
+    category,
+    members,
+    difficulty,
+    rank,
+    location,
+  } = tribe;
+  console.log(members); */
+
+  //console.log(location);
 
   const getTribuInfo = () => {
     switch (tribuOption) {
@@ -160,4 +182,4 @@ const TribuCard = () => {
   );
 };
 
-export default TribuCard;
+export default connect(null, { getTribe })(Tribe);

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import App from './App';
 import Tribes from './pages/Tribes';
-import TribeInfo from './components/TribeInfo';
+import Tribe from './pages/Tribe';
 import About from './components/About';
 import Signup from './components/auth/Signup';
 import Signin from './components/auth/Signin';
@@ -20,7 +20,7 @@ const Routes = () => {
       <Switch>
         <Route path="/" exact component={App} />
         <Route path="/tribes" exact component={Tribes} />
-        <Route path="/tribe/:id" exact component={TribeInfo} />
+        <Route path="/tribe/:idTribe" exact component={Tribe} />
         <Route path="/about" exact component={About} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/signin" exact component={Signin} />

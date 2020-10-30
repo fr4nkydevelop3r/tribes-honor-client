@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faGlobeAmericas,
@@ -7,40 +8,49 @@ import {
   faTrophy,
 } from '@fortawesome/free-solid-svg-icons';
 
-const TribuCardMiniature = ({
-  tribeName,
-  category,
-  location,
-  members,
-  difficulty,
-  rank,
-}) => {
+const TribuCardMiniature = ({ tribe }) => {
+  const {
+    _id: idTribe,
+    name,
+    category,
+    members,
+    difficulty,
+    rank,
+    location,
+  } = tribe;
+
   return (
     <>
-      <div className="tribe-card-miniature">
-        <div className="tribe-name">
-          <h4>The warriors</h4>
-          <h5>#category</h5>
+      <Link
+        to={{
+          pathname: `/tribe/${idTribe}`,
+          state: { tribe },
+        }}>
+        <div className="tribe-card-miniature">
+          <div className="tribe-name">
+            <h4>{name}</h4>
+            <h5>#{category}</h5>
+          </div>
+          <div className="tribe-info">
+            <div className="info-item">
+              <FontAwesomeIcon icon={faGlobeAmericas} color="#ffd166" />
+              <span>{location}</span>
+            </div>
+            <div className="info-item">
+              <FontAwesomeIcon icon={faUsers} color="#ffd166" />
+              <span> {members.length} members </span>
+            </div>
+            <div className="info-item">
+              <FontAwesomeIcon icon={faHiking} color="#ffd166" />
+              <span> {difficulty}</span>
+            </div>
+            <div className="info-item">
+              <FontAwesomeIcon icon={faTrophy} color="#ffd166" />
+              <span> Rank #{rank}</span>
+            </div>
+          </div>
         </div>
-        <div className="tribe-info">
-          <div className="info-item">
-            <FontAwesomeIcon icon={faGlobeAmericas} color="#ffd166" />
-            <span>Brooklyn, NY</span>
-          </div>
-          <div className="info-item">
-            <FontAwesomeIcon icon={faUsers} color="#ffd166" />
-            <span> 18 warriors </span>
-          </div>
-          <div className="info-item">
-            <FontAwesomeIcon icon={faHiking} color="#ffd166" />
-            <span> Begginer</span>
-          </div>
-          <div className="info-item">
-            <FontAwesomeIcon icon={faTrophy} color="#ffd166" />
-            <span> Rank #F</span>
-          </div>
-        </div>
-      </div>
+      </Link>
     </>
   );
 };
