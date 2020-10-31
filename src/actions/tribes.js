@@ -23,23 +23,3 @@ export const getTribes = () => async (dispatch) => {
     });
   }
 };
-
-export const getTribe = () => async (dispatch) => {
-  try {
-    const { data: tribe } = await axios({
-      method: 'GET',
-      url: `${process.env.REACT_APP_API}/get-tribe`,
-    });
-    console.log('Si llega aqui');
-    dispatch({
-      type: GET_TRIBE,
-      tribe,
-    });
-  } catch (e) {
-    console.log(e.message);
-    dispatch({
-      type: GET_TRIBE_ERROR,
-      error: e.message.error,
-    });
-  }
-};

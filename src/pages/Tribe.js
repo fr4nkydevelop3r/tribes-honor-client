@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { getTribe } from '../actions/tribes';
+import { connect, useSelector } from 'react-redux';
+import { getTribe } from '../actions/tribe';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -18,7 +18,6 @@ const Tribe = ({ location, match, getTribe }) => {
     }
   }, []);
 
-  //console.log(state);
   const [tribuOption, setTribuOption] = useState('about');
   const master = 'https://picsum.photos/100/100';
   const padawans = [
@@ -36,17 +35,19 @@ const Tribe = ({ location, match, getTribe }) => {
     backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/test-food-app-d7eca.appspot.com/o/products%2FPunk_still.jpg?alt=media&token=b3304a2b-9df0-4680-90f9-2273bd09ee0e')`,
   };
 
-  /*const {
+  const tribe = useSelector((state) => state.tribe) || location.state.tribe;
+
+  const {
     _id: idTribe,
     name,
+    description,
     category,
+    mision,
     members,
-    difficulty,
-    rank,
-    location,
+    outcome,
+    location: locationTribe,
   } = tribe;
-  console.log(members); */
-
+  console.log(locationTribe);
   //console.log(location);
 
   const getTribuInfo = () => {
@@ -55,33 +56,21 @@ const Tribe = ({ location, match, getTribe }) => {
         return (
           <div className="about">
             <h4>About</h4>
-            <p>
-              lkodfko fkasflas fdalkdfkasl lkodfko fkasflas fdalkdfkasl lkodfko
-              fkasflas fdalkdfkasl lkodfko fkasflas fdalkdfkasl lkodfko fkasflas
-              fdalkdfkasl lkodfko fkasflas fdalkdfkasl lkodfko fkasflas
-              fdalkdfkasl lkodfko fkasflas fdalkdfkasl lkodfko fkasflas
-              fdalkdfkasl
-            </p>
+            <p>{description}</p>
           </div>
         );
       case 'mision':
         return (
           <div className="mision">
             <h4>Mision</h4>
-            <p>
-              kjfdksdnf fjskdfksa fdsjkadfjska fsdjkfjdsak jkfsdjksa fdsjkfjsdaf
-              fjksdjfkds jfksdjfksf fsjdkfjskf fjksdfjsk
-            </p>
+            <p>{mision}</p>
           </div>
         );
       case 'outcome':
         return (
           <div className="outcome">
             <h4>Outcome</h4>
-            <p>
-              kjfdksdnf fjskdfksa fdsjkadfjska fsdjkfjdsak jkfsdjksa fdsjkfjsdaf
-              fjksdjfkds jfksdjfksf fsjdkfjskf fjksdfjsk
-            </p>
+            <p>{outcome}</p>
           </div>
         );
       case 'tribe':
@@ -97,7 +86,7 @@ const Tribe = ({ location, match, getTribe }) => {
               </div>
             </div>
             <div className="padawansContainer">
-              {padawans.map((item) => {
+              {members.map((item) => {
                 return <img src={master}></img>;
               })}
             </div>
@@ -132,13 +121,13 @@ const Tribe = ({ location, match, getTribe }) => {
       <div className="card">
         <div className="card-image" style={cardImage}></div>
         <div className="card-city">
-          <span>Houston, TX</span>
+          <span>{locationTribe}</span>
         </div>
         <div className="card-body">
           <div className="card-header">
             <div className="category-container">
-              <h4>Tribe name</h4>
-              <span className="category">#category</span>
+              <h4>{name}</h4>
+              <span className="category">#{category}</span>
             </div>
             <div className="categoryJoin">
               <button type="button" className="btn-card">
