@@ -1,8 +1,6 @@
 import axios from 'axios';
 export const GET_TRIBES = 'GET_TRIBES';
 export const GET_TRIBES_ERROR = 'GET_TRIBES_ERROR';
-export const GET_TRIBE = 'GET_TRIBE';
-export const GET_TRIBE_ERROR = 'GET_TRIBE_ERROR';
 
 export const getTribes = () => async (dispatch) => {
   try {

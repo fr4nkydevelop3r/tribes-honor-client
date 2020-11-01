@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
 import { getTribe } from '../actions/tribe';
-
+import { getMembers } from '../actions/members';
+import Layout from '../components/Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUserSecret,
@@ -9,46 +10,24 @@ import {
   faUsers,
   faFileAlt,
 } from '@fortawesome/free-solid-svg-icons';
+import BackNavigation from '../components/BackNavigation';
 
-const Tribe = ({ location, match, getTribe }) => {
+const Tribe = ({ match, getTribe, getMembers }) => {
   useEffect(() => {
-    if (!location.state) {
-      const { idTribe } = match.params;
-      getTribe(idTribe);
-    }
+    const { idTribe } = match.params;
+    getTribe(idTribe);
+    getMembers(idTribe);
   }, []);
+
+  const tribe = useSelector((state) => state.tribe);
+  const members = useSelector((state) => state.members);
 
   const [tribuOption, setTribuOption] = useState('about');
   const master = 'https://picsum.photos/100/100';
-  const padawans = [
-    'https://picsum.photos/100/100',
-    'https://picsum.photos/200/300',
-    'https://picsum.photos/200/300',
-    'https://picsum.photos/100/100',
-    'https://picsum.photos/200/300',
-    'https://picsum.photos/200/300',
-    'https://picsum.photos/100/100',
-    'https://picsum.photos/200/300',
-    'https://picsum.photos/200/300',
-  ];
+
   let cardImage = {
     backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/test-food-app-d7eca.appspot.com/o/products%2FPunk_still.jpg?alt=media&token=b3304a2b-9df0-4680-90f9-2273bd09ee0e')`,
   };
-
-  const tribe = useSelector((state) => state.tribe) || location.state.tribe;
-
-  const {
-    _id: idTribe,
-    name,
-    description,
-    category,
-    mision,
-    members,
-    outcome,
-    location: locationTribe,
-  } = tribe;
-  console.log(locationTribe);
-  //console.log(location);
 
   const getTribuInfo = () => {
     switch (tribuOption) {
@@ -56,28 +35,28 @@ const Tribe = ({ location, match, getTribe }) => {
         return (
           <div className="about">
             <h4>About</h4>
-            <p>{description}</p>
+            <p>{tribe.description}</p>
           </div>
         );
       case 'mision':
         return (
           <div className="mision">
             <h4>Mision</h4>
-            <p>{mision}</p>
+            <p>{tribe.mision}</p>
           </div>
         );
       case 'outcome':
         return (
           <div className="outcome">
             <h4>Outcome</h4>
-            <p>{outcome}</p>
+            <p>{tribe.outcome}</p>
           </div>
         );
       case 'tribe':
         return (
           <div className="tribe">
             <h4>Our tribe</h4>
-            <div className="masterContainer">
+            <div className="master-container">
               <div>
                 <img src={master}></img>
               </div>
@@ -85,9 +64,9 @@ const Tribe = ({ location, match, getTribe }) => {
                 <span> Juan / Master</span>
               </div>
             </div>
-            <div className="padawansContainer">
-              {members.map((item) => {
-                return <img src={master}></img>;
+            <div className="members-container">
+              {Object.values(members).map((item, index) => {
+                return <img src={item.photo} key={index}></img>;
               })}
             </div>
           </div>
@@ -96,8 +75,6 @@ const Tribe = ({ location, match, getTribe }) => {
   };
 
   const handleOption = (e) => {
-    console.log(e.target.nodeName);
-
     switch (e.target.nodeName) {
       case 'SPAN':
         setTribuOption(e.target.attributes.getNamedItem('data-option').value);
@@ -118,57 +95,64 @@ const Tribe = ({ location, match, getTribe }) => {
 
   return (
     <>
-      <div className="card">
-        <div className="card-image" style={cardImage}></div>
-        <div className="card-city">
-          <span>{locationTribe}</span>
-        </div>
-        <div className="card-body">
-          <div className="card-header">
-            <div className="category-container">
-              <h4>{name}</h4>
-              <span className="category">#{category}</span>
+      <Layout>
+        <BackNavigation />{' '}
+        {tribe ? (
+          <div className="card">
+            <div className="card-image" style={cardImage}></div>
+            <div className="card-city">
+              <span>{tribe.location}</span>
             </div>
-            <div className="categoryJoin">
-              <button type="button" className="btn-card">
-                JOIN
-              </button>
+            <div className="card-body">
+              <div className="card-header">
+                <div className="category-container">
+                  <h4>{tribe.name}</h4>
+                  <span className="category">#{tribe.category}</span>
+                </div>
+                <div className="categoryJoin">
+                  <button type="button" className="btn-card">
+                    JOIN
+                  </button>
+                </div>
+              </div>
+
+              {getTribuInfo()}
+            </div>
+            <div className="card-options">
+              <span data-option="about" onClick={handleOption}>
+                {' '}
+                <FontAwesomeIcon
+                  icon={faFileAlt}
+                  color={tribuOption === 'about' ? '#ffd166' : '#fff'}
+                />
+              </span>
+              <span data-option="mision" onClick={handleOption}>
+                {' '}
+                <FontAwesomeIcon
+                  icon={faUserSecret}
+                  color={tribuOption === 'mision' ? '#ffd166' : '#fff'}
+                />
+              </span>
+              <span data-option="outcome" onClick={handleOption}>
+                <FontAwesomeIcon
+                  icon={faMedal}
+                  color={tribuOption === 'outcome' ? '#ffd166' : '#fff'}
+                />
+              </span>
+              <span data-option="tribe" onClick={handleOption}>
+                <FontAwesomeIcon
+                  icon={faUsers}
+                  color={tribuOption === 'tribe' ? '#ffd166' : '#fff'}
+                />
+              </span>
             </div>
           </div>
-
-          {getTribuInfo()}
-        </div>
-        <div className="card-options">
-          <span data-option="about" onClick={handleOption}>
-            {' '}
-            <FontAwesomeIcon
-              icon={faFileAlt}
-              color={tribuOption === 'about' ? '#ffd166' : '#fff'}
-            />
-          </span>
-          <span data-option="mision" onClick={handleOption}>
-            {' '}
-            <FontAwesomeIcon
-              icon={faUserSecret}
-              color={tribuOption === 'mision' ? '#ffd166' : '#fff'}
-            />
-          </span>
-          <span data-option="outcome" onClick={handleOption}>
-            <FontAwesomeIcon
-              icon={faMedal}
-              color={tribuOption === 'outcome' ? '#ffd166' : '#fff'}
-            />
-          </span>
-          <span data-option="tribe" onClick={handleOption}>
-            <FontAwesomeIcon
-              icon={faUsers}
-              color={tribuOption === 'tribe' ? '#ffd166' : '#fff'}
-            />
-          </span>
-        </div>
-      </div>
+        ) : (
+          <div>Cargando...</div>
+        )}
+      </Layout>
     </>
   );
 };
 
-export default connect(null, { getTribe })(Tribe);
+export default connect(null, { getTribe, getMembers })(Tribe);

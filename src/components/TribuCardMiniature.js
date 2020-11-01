@@ -21,11 +21,7 @@ const TribuCardMiniature = ({ tribe }) => {
 
   return (
     <>
-      <Link
-        to={{
-          pathname: `/tribe/${idTribe}`,
-          state: { tribe },
-        }}>
+      <Link to={`/tribe/${idTribe}`} className="tribe-card-miniature-container">
         <div className="tribe-card-miniature">
           <div className="tribe-name">
             <h4>{name}</h4>

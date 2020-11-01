@@ -7,6 +7,9 @@
   flex-wrap: wrap;
   justify-content: space-between;
   @media screen and(min-width: $min-width) {
-    justify-content: space-around;
+    justify-content: start;
+    a {
+      margin-right: 3rem;
+    }
   }
 }
