@@ -4,6 +4,7 @@ import { getTribe } from '../actions/tribe';
 import { getMembers } from '../actions/members';
 import Layout from '../components/Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import VideoPlayer from '../components/VideoPlayer';
 import {
   faUserSecret,
   faMedal,
@@ -23,11 +24,6 @@ const Tribe = ({ match, getTribe, getMembers }) => {
   const members = useSelector((state) => state.members);
 
   const [tribuOption, setTribuOption] = useState('about');
-  const master = 'https://picsum.photos/100/100';
-
-  let cardImage = {
-    backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/test-food-app-d7eca.appspot.com/o/products%2FPunk_still.jpg?alt=media&token=b3304a2b-9df0-4680-90f9-2273bd09ee0e')`,
-  };
 
   const getTribuInfo = () => {
     switch (tribuOption) {
@@ -56,17 +52,14 @@ const Tribe = ({ match, getTribe, getMembers }) => {
         return (
           <div className="tribe">
             <h4>Our tribe</h4>
-            <div className="master-container">
-              <div>
-                <img src={master}></img>
-              </div>
-              <div>
-                <span> Juan / Master</span>
-              </div>
-            </div>
             <div className="members-container">
               {Object.values(members).map((item, index) => {
-                return <img src={item.photo} key={index}></img>;
+                return (
+                  <div className="member" key={index}>
+                    <img src={item.photo}></img>
+                    <span>{getFirstName(item.name)}</span>
+                  </div>
+                );
               })}
             </div>
           </div>
@@ -93,17 +86,24 @@ const Tribe = ({ match, getTribe, getMembers }) => {
     }
   };
 
+  const getFirstName = (name) => {
+    return name.split(' ')[0];
+  };
+
   return (
     <>
       <Layout>
         <BackNavigation />{' '}
         {tribe ? (
           <div className="card">
-            <div className="card-image" style={cardImage}></div>
-            <div className="card-city">
-              <span>{tribe.location}</span>
+            <div className="card-video">
+              <VideoPlayer videoLink={tribe.videoMaster} />
             </div>
+
             <div className="card-body">
+              <div className="card-city">
+                <span>{tribe.location}</span>
+              </div>
               <div className="card-header">
                 <div className="category-container">
                   <h4>{tribe.name}</h4>

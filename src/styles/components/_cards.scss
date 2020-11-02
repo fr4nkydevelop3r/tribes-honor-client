@@ -2,8 +2,8 @@
   display: grid;
   position: relative;
   width: 300px;
-  grid-template-rows: 210px 250px 80px;
-  grid-template-areas: 'image' 'text' 'body';
+  grid-template-rows: 250px 250px 80px;
+  grid-template-areas: 'video' 'text' 'body';
   font-family: $work-sans;
   background: $cool-gray;
   box-shadow: 5px 5px 15px rgba(7, 59, 76, 0.5);
@@ -16,29 +16,28 @@
   }
 }
 
-.card-city {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(5px);
-  border-top-left-radius: 10px;
-  span {
-    font-size: 12px;
-  }
-}
-
-.card-image {
-  grid-area: image;
+.card-video {
+  position: relative;
+  grid-area: video;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background-size: cover;
 }
 
 .card-body {
+  position: relative;
   grid-area: text;
-  margin: 25px;
+  padding: 55px 25px 25px;
+  .card-city {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    span {
+      font-size: 12px;
+    }
+  }
   .card-header {
     display: flex;
     justify-content: space-between;
@@ -62,22 +61,13 @@
     height: 120px;
     p {
       margin-top: 0.5rem;
+      @media screen and(min-width: $min-width) {
+        font-size: 14px;
+      }
     }
   }
   .tribe {
     margin-top: 0.5rem;
-    .master-container {
-      margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-      }
-    }
     .members-container {
       margin-top: 1rem;
       display: flex;
@@ -85,15 +75,23 @@
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       justify-content: center;
-
-      img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        flex: 0 0 auto;
+      .member {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
         padding: 0.5rem;
-        &:first-child {
-          padding-left: 0;
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          margin-bottom: 0.2rem;
+          &:first-child {
+            padding-left: 0;
+          }
+        }
+        span {
+          font-size: 14px;
         }
       }
     }
