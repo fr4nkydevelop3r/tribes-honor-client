@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { getTribes } from '../actions/tribes';
 import Layout from '../components/Layout';
 import TribuCardMiniature from '../components/TribuCardMiniature';
+import Search from '../components/Search';
+
 const Tribes = ({ getTribes }) => {
   useEffect(() => {
     getTribes();
@@ -17,7 +19,7 @@ const Tribes = ({ getTribes }) => {
   return (
     <Layout>
       <h3 className="title">Tribes around the world</h3>
-      {tribes.length > 0 ? (
+      {/*tribes.length > 0 ? (
         <div className="tribes-container">
           {tribes.map((tribe) => {
             return <TribuCardMiniature key={tribe._id} tribe={tribe} />;
@@ -25,7 +27,8 @@ const Tribes = ({ getTribes }) => {
         </div>
       ) : (
         <div>Spinner</div>
-      )}
+      )*/}
+      <Search />
     </Layout>
   );
 };

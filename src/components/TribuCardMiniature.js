@@ -8,7 +8,7 @@ import {
   faTrophy,
 } from '@fortawesome/free-solid-svg-icons';
 
-const TribuCardMiniature = ({ tribe }) => {
+const TribuCardMiniature = ({ hit }) => {
   const {
     _id: idTribe,
     name,
@@ -17,7 +17,7 @@ const TribuCardMiniature = ({ tribe }) => {
     difficulty,
     rank,
     location,
-  } = tribe;
+  } = hit;
 
   return (
     <>
