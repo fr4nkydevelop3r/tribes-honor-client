@@ -2,14 +2,17 @@ import React from 'react';
 import algoliasearch from 'algoliasearch';
 import {
   InstantSearch,
-  SearchBox,
   Hits,
   Highlight,
-  Stats,
+  ClearRefinements,
+  RefinementList,
   SortBy,
   Pagination,
 } from 'react-instantsearch-dom';
-import TribuCardMiniature from './TribuCardMiniature';
+
+import { CustomSearchBox } from './SearchBox';
+import { CustomCategoryFilter } from './RefinementList';
+import TribuCardMiniature from '../TribuCardMiniature';
 
 const searchClient = algoliasearch(
   'MV4WTJBV06',
@@ -21,9 +24,8 @@ const Search = () => {
     <>
       <InstantSearch searchClient={searchClient} indexName="dev_TRIBES">
         <Header />
-        <div className="body-content">
-          <Content />
-        </div>
+        <Content />
+        <Pagination />
       </InstantSearch>
     </>
   );
@@ -31,22 +33,19 @@ const Search = () => {
 
 const Header = () => (
   <header className="header">
-    <SearchBox
-      className="search-bar"
+    <CustomSearchBox
       translations={{ placeholder: 'Search for tribes around the world' }}
+      submit={<span>🔍</span>}
+      showLoadingIndicator
     />
   </header>
 );
 
 const Content = () => (
-  <main>
-    <div className="information"></div>
+  <div className="results-container">
+    <CustomCategoryFilter attribute={'category'} />
     <Hits hitComponent={TribuCardMiniature} />
-    <div>
-      {' '}
-      <Pagination />
-    </div>
-  </main>
+  </div>
 );
 
 export default Search;

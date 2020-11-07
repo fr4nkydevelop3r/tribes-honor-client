@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { getTribes } from '../actions/tribes';
 import Layout from '../components/Layout';
-import TribuCardMiniature from '../components/TribuCardMiniature';
-import Search from '../components/Search';
+import Search from '../components/search/Search';
 
 const Tribes = ({ getTribes }) => {
   useEffect(() => {
