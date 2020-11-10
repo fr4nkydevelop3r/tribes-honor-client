@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import Google from './Google';
 import Facebook from './Facebook';
 
 import { authenticate, isAuth } from './helpers';
+import isUserAuth from '../../actions/auth';
 import Layout from '../Layout';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -16,6 +18,8 @@ const Signin = ({ history }) => {
     password: '',
     buttonText: 'Submit',
   });
+
+  const dispatch = useDispatch();
 
   const { email, password, buttonText } = values;
 
@@ -40,7 +44,13 @@ const Signin = ({ history }) => {
       data: { email, password },
     })
       .then((response) => {
-        console.log('SIGNIN SUCESS', response);
+        const { pathname } = history.location.state.from;
+        console.log('SIGNIN SUCESS');
+        const {
+          data: { user },
+        } = response;
+
+        dispatch(isUserAuth(user));
         authenticate(response, () => {
           setValues({
             ...values,
@@ -51,7 +61,7 @@ const Signin = ({ history }) => {
           //toast.success(`Hey ${response.data.user.name}, Welcome back!`);
           isAuth() && isAuth().role === 'admin'
             ? history.push('/admin')
-            : history.push('private');
+            : history.push(`${pathname}`);
         });
       })
       .catch((error) => {

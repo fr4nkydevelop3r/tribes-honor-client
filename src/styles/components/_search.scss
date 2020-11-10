@@ -35,33 +35,28 @@
     .list-item {
       margin-bottom: 0.5rem;
       .checkbox {
-        display: grid;
-        grid-template-columns: min-content auto;
-        grid-gap: 0.5em;
-        font-size: 1rem;
+        display: flex;
         color: $peacock-blue;
+        align-items: center;
+        font-size: 12px;
       }
       .checkbox__input {
+        margin-right: 0.5rem;
         input {
           opacity: 0;
-          width: 1em;
-          height: 1em;
+          width: 0.7rem;
+          height: 0.7rem;
+          display: none;
         }
       }
       .checkbox__control {
-        display: inline-grid;
-        width: 1em;
-        height: 1em;
+        width: 0.7rem;
+        height: 0.7rem;
         border-radius: 0.25em;
         border: 2px solid currentColor;
       }
       .checkbox__input {
-        display: grid;
-        grid-template-areas: 'checkbox';
-
-        > * {
-          grid-area: checkbox;
-        }
+        display: flex;
       }
       .checkbox__control svg {
         transition: transform 0.1s ease-in 25ms;

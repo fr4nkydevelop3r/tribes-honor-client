@@ -13,6 +13,7 @@ import PrivateRoute from './components/auth/PrivateRoute';
 import AdminRoute from './components/auth/AdminRoute';
 import Forgot from './components/auth/Forgot';
 import Reset from './components/auth/Reset';
+import AddTribe from './pages/AddTribe';
 
 const Routes = () => {
   return (
@@ -29,6 +30,7 @@ const Routes = () => {
         <Route path="/auth/activate/:token" exact component={Activate} />
         <AdminRoute path="/admin" exact component={Admin} />
         <PrivateRoute path="/private" exact component={Private} />
+        <PrivateRoute path="/add-tribe" exact component={AddTribe} />
       </Switch>
     </BrowserRouter>
   );

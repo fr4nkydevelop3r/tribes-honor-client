@@ -33,7 +33,7 @@ const Private = ({ history }) => {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
-        console.log('PRIVATE PROFILE UPDATE', response);
+        //console.log('PRIVATE PROFILE UPDATE', response);
         const { role, name, email } = response.data;
         setValues({ ...values, role, name, email });
       })
