@@ -12,11 +12,15 @@ import Layout from '../Layout';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-const Signin = ({ history }) => {
+const Signin = ({ history, match }) => {
   const [values, setValues] = useState({
     email: '',
     password: '',
     buttonText: 'Submit',
+  });
+
+  const [pathName, setPathname] = useState(() => {
+    return history.location.state ? history.location.state.from.pathname : '/';
   });
 
   const dispatch = useDispatch();
@@ -44,7 +48,6 @@ const Signin = ({ history }) => {
       data: { email, password },
     })
       .then((response) => {
-        const { pathname } = history.location.state.from;
         console.log('SIGNIN SUCESS');
         const {
           data: { user },
@@ -61,11 +64,11 @@ const Signin = ({ history }) => {
           //toast.success(`Hey ${response.data.user.name}, Welcome back!`);
           isAuth() && isAuth().role === 'admin'
             ? history.push('/admin')
-            : history.push(`${pathname}`);
+            : history.push(`${pathName}`);
         });
       })
       .catch((error) => {
-        console.log('SIGNIN  ERROR', error.response.error);
+        console.log('SIGNIN  ERROR', error);
         setValues({ ...values, buttonText: 'Submit' });
         toast.error(error.response.data.error);
       });

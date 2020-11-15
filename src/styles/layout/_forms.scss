@@ -1,60 +1,66 @@
-.form {
-  width: 300px;
-  height: 300px;
-  color: $peacock-blue;
-  .title-form {
-    text-align: center;
-  }
-  .row {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-    .field-name {
-      font-size: 14px;
-    }
-    .field-input {
-      margin-top: 1rem;
-      border: none;
-      border-bottom: 1px solid $peacock-blue;
-      font-size: 14px;
-      padding-bottom: 0.2rem;
-      color: $peacock-blue;
-      &::-webkit-input-placeholder {
-        font-size: 12px;
-        color: $gray-light;
-      }
-      &::-moz-placeholder {
-        color: $gray-light;
-      }
-      &:-ms-input-placeholder {
-        color: $gray-light;
-      }
-      &:-moz-placeholder {
-        color: $gray-light;
-      }
-    }
-    .error {
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .form {
+    width: 300px;
+    height: 300px;
+    color: $peacock-blue;
+    .title-form {
       text-align: center;
-      font-size: 12px;
-      color: $carmen-red;
-      margin-top: 0.5rem;
     }
-  }
+    .row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      .field-name {
+        font-size: 14px;
+      }
+      .field-input {
+        margin-top: 1rem;
+        border: none;
+        border-bottom: 1px solid $peacock-blue;
+        font-size: 14px;
+        padding-bottom: 0.2rem;
+        color: $peacock-blue;
+        &::-webkit-input-placeholder {
+          font-size: 12px;
+          color: $gray-light;
+        }
+        &::-moz-placeholder {
+          color: $gray-light;
+        }
+        &:-ms-input-placeholder {
+          color: $gray-light;
+        }
+        &:-moz-placeholder {
+          color: $gray-light;
+        }
+      }
+      .error {
+        text-align: center;
+        font-size: 12px;
+        color: $carmen-red;
+        margin-top: 0.5rem;
+      }
+    }
 
-  .first-row {
-    margin-top: 2rem;
-    @extend .row;
-  }
-  .btn-form {
-    margin-top: 2rem;
-    text-align: center;
-  }
-  .login {
-    margin-top: 1rem;
-    font-size: 12px;
-    text-align: center;
-    a {
-      color: $cool-gray;
+    .first-row {
+      margin-top: 2rem;
+      @extend .row;
+    }
+    .btn-form {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .login {
+      margin-top: 1rem;
+      font-size: 12px;
+      text-align: center;
+      a {
+        color: $cool-gray;
+      }
     }
   }
 }

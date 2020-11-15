@@ -31,7 +31,7 @@ const Places = () => {
     getGeocode({ address: description })
       .then((results) => {
         const addressComponents = results[0].address_components;
-        console.log(addressComponents);
+        const formatted_address = results[0].formatted_address;
       })
       .catch((error) => {
         console.log('Error: ', error);
@@ -40,7 +40,7 @@ const Places = () => {
 
   const renderSuggestions = () =>
     // eslint-disable-next-line implicit-arrow-linebreak
-    data.map((suggestion) => {
+    data.map((suggestion, index) => {
       const {
         id,
         structured_formatting: {
@@ -51,7 +51,7 @@ const Places = () => {
 
       return (
         // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-        <li key={id} onClick={handleSelect(suggestion)}>
+        <li key={index} onClick={handleSelect(suggestion)}>
           <strong>{mainText}</strong>
           <small> {secondaryText}</small>
         </li>
@@ -60,15 +60,16 @@ const Places = () => {
 
   return (
     <>
-      <div ref={ref}>
+      <div ref={ref} className="places-container">
         <input
           value={value}
           onChange={handleInput}
           disabled={!ready}
           placeholder="Tribes Location"
           onFocus={handleInput}
+          className="field-input input-place"
         />
-        <ul>{renderSuggestions()}</ul>
+        <ul className="list-suggestions">{renderSuggestions()}</ul>
       </div>
     </>
   );

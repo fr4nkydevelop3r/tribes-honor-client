@@ -49,7 +49,7 @@ const Signup = () => {
   };
 
   const signupForm = () => (
-    <div className="signup-container">
+    <div className="form-container">
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         {<h1 className="title-form">Create account</h1>}
         <div className="first-row">

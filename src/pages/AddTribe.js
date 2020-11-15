@@ -1,12 +1,13 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import Places from '../components/Places';
+import Autocomplete from '../components/Autocomplete';
 
 const AddTribe = () => {
   return (
     <>
       <Layout>
-        <div className="add-tribe-container">
+        <div className="form-container">
           <form className="form">
             <h1 className="title-form">Add Tribe</h1>
             <div className="first-row">
@@ -21,7 +22,11 @@ const AddTribe = () => {
               />
             </div>
             <div className="row">
-              <label className="field-name">Location</label>
+              <label className="field-name">Category</label>
+              <Autocomplete />
+            </div>
+            <div className="row">
+              <label className="field-name">LOCATION</label>
               <Places />
             </div>
           </form>

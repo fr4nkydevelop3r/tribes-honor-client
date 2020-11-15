@@ -1,0 +1,26 @@
+.places-container {
+  .input-place {
+    width: 100%;
+  }
+  .list-suggestions {
+    margin-top: 0.5rem;
+    li {
+      font-size: 14px;
+      color: gray;
+    }
+  }
+}
+
+.categories-container {
+  .input-autocomplete {
+    width: 100%;
+    border: 1px solid tomato;
+  }
+  .list-suggestions {
+    margin-top: 0.5rem;
+    li {
+      font-size: 14px;
+      color: gray;
+    }
+  }
+}
