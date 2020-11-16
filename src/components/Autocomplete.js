@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Autocomplete = ({ categories }) => {
+const Autocomplete = ({ categories, register, setValue }) => {
   const [activeOption, setActiveOption] = useState(0);
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [showOptions, setShowOptions] = useState(false);
@@ -29,15 +29,16 @@ const Autocomplete = ({ categories }) => {
 
   const onClick = (e) => {
     e.preventDefault();
-    setUserInput(e.target.value);
-
-    //setFilteredOptions([]);
-    //setActiveOption(0);
-    //setShowOptions(false);
+    setFilteredOptions([]);
+    setActiveOption(0);
+    setShowOptions(false);
   };
-
   const setCategory = (e) => {
-    setUserInput(e.target.innerHTML);
+    setValue('category', e.target.innerHTML, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+    //e.target.value = filteredOptions[activeOption];
     setFilteredOptions([]);
     setShowOptions(false);
   };
@@ -97,12 +98,14 @@ const Autocomplete = ({ categories }) => {
         <input
           type="text"
           onChange={onChange}
-          value={userInput || ''}
           onKeyDown={onKeyDown}
           onClick={onClick}
           className="field-input input-autocomplete"
           placeholder="Use one of the recommendations or create a new one"
+          ref={register({ required: true })}
+          name="category"
         />
+
         {optionList()}
       </div>
     </>

@@ -1,36 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../components/Layout';
-import Places from '../components/Places';
-import Autocomplete from '../components/Autocomplete';
-
+import AddInfoTribeForm from '../components/AddInfoTribeForm';
+import AddInfoMasterForm from '../components/AddInfoMasterForm';
 const AddTribe = () => {
+  const [isInfoTribeReady, setIsInfoTribeReady] = useState(false);
+  const [dataTribe, setDataTribe] = useState({});
+
+  const handleForms = (dataTribe) => {
+    setDataTribe(dataTribe);
+    setIsInfoTribeReady(!isInfoTribeReady);
+  };
+
   return (
     <>
       <Layout>
-        <div className="form-container">
-          <form className="form">
-            <h1 className="title-form">Add Tribe</h1>
-            <div className="first-row">
-              <label className="field-name">TRIBE NAME</label>
-              <input
-                className="field-input"
-                // onChange={handleChange('name')}
-                type="text"
-                // value={name}
-                placeholder="Enter the tribe name"
-                name="name"
-              />
-            </div>
-            <div className="row">
-              <label className="field-name">Category</label>
-              <Autocomplete />
-            </div>
-            <div className="row">
-              <label className="field-name">LOCATION</label>
-              <Places />
-            </div>
-          </form>
-        </div>
+        {!isInfoTribeReady && <AddInfoTribeForm handleForms={handleForms} />}
+        {isInfoTribeReady && <AddInfoMasterForm dataTribe={dataTribe} />}
       </Layout>
     </>
   );

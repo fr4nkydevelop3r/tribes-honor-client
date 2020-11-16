@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import usePlacesAutocomplete, { getGeocode } from 'use-places-autocomplete';
 
-const Places = () => {
+const Places = ({ register, setValueForm }) => {
   const {
     ready,
     value,
@@ -9,11 +9,10 @@ const Places = () => {
     setValue,
     clearSuggestions,
   } = usePlacesAutocomplete({
-    requestOptions: {
-      /* Define search scope here */
-    },
     debounce: 300,
   });
+
+  const [activeOption, setActiveOption] = useState(0);
   const ref = useRef();
 
   const handleInput = (e) => {
@@ -24,7 +23,11 @@ const Places = () => {
   const handleSelect = ({ description }) => () => {
     // When user selects a place, we can replace the keyword without request data from API
     // by setting the second parameter as "false"
-    setValue(description, false);
+    console.log(description);
+    setValueForm('location', description, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
     clearSuggestions();
 
     // Get latitude and longitude via utility functions
@@ -51,23 +54,43 @@ const Places = () => {
 
       return (
         // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-        <li key={index} onClick={handleSelect(suggestion)}>
+        <li
+          key={index}
+          onClick={handleSelect(suggestion)}
+          style={{
+            color: index === activeOption ? '#118ab2' : 'gray',
+          }}>
           <strong>{mainText}</strong>
           <small> {secondaryText}</small>
         </li>
       );
     });
 
+  const onKeyDown = (e) => {
+    console.log(e.keyCode);
+    if (e.keyCode === 38) {
+      if (activeOption === 0) return;
+      setActiveOption(activeOption - 1);
+    }
+    if (e.keyCode === 40) {
+      if (data.length - 1 === activeOption) return;
+      setActiveOption(activeOption + 1);
+    }
+  };
+
+  console.log(data);
   return (
     <>
       <div ref={ref} className="places-container">
         <input
-          value={value}
           onChange={handleInput}
           disabled={!ready}
           placeholder="Tribes Location"
           onFocus={handleInput}
           className="field-input input-place"
+          onKeyDown={onKeyDown}
+          ref={register({ required: true })}
+          name="location"
         />
         <ul className="list-suggestions">{renderSuggestions()}</ul>
       </div>
