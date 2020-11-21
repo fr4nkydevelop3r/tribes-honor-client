@@ -1,10 +1,13 @@
 import React from 'react';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import Places from './Places';
-import axios from 'axios';
+import { getCookie } from './auth/helpers';
 
 const AddInfoMasterForm = ({ dataTribe }) => {
   const { register, handleSubmit, errors, setValue: setValueForm } = useForm();
+  const token = getCookie('token');
+
   const onSubmit = (data) => {
     const { name, category, description, mision, outcome } = dataTribe;
     const { location, video } = data;
@@ -21,6 +24,7 @@ const AddInfoMasterForm = ({ dataTribe }) => {
       method: 'POST',
       url: `${process.env.REACT_APP_API}/add-tribe`,
       data: { name, category, description, mision, outcome, location, video },
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
         console.log('TRIBE ADDED SUCCESFULLY', response);

@@ -1,0 +1,91 @@
+.forgot-password-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 1rem;
+  a {
+    color: $cool-gray;
+  }
+}
+.or-container {
+  margin: 0 auto;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  @media screen and(min-width: $min-width) {
+    width: 500px;
+  }
+  span {
+    font-size: 12px;
+    color: $peacock-blue;
+  }
+  hr {
+    width: 40%;
+    height: 0px;
+    border: none;
+    border-top: 1px solid $peacock-blue;
+  }
+}
+
+.signin-social-container {
+  margin: 0 auto;
+  margin-top: 1rem;
+  @media screen and(min-width: $min-width) {
+    width: 500px;
+  }
+  .title-login-social {
+    text-align: center;
+    color: $peacock-blue;
+  }
+}
+
+.social-accounts {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 1rem;
+  @media screen and(min-width: $min-width) {
+    width: 500px;
+  }
+  .facebook-button {
+    width: 120px;
+    background-color: #3b5998;
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.54);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px,
+      rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+    padding: 0px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Roboto, sans-serif;
+    height: 41px;
+    span {
+      color: #fff;
+    }
+  }
+  .google-button-container {
+    button {
+      width: 120px;
+    }
+  }
+}
+
+.no-account-container {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 2rem;
+  @media screen and(min-width: $min-width) {
+    width: 500px;
+  }
+  a {
+    font-size: 12px;
+    color: $peacock-blue;
+  }
+}

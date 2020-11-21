@@ -24,10 +24,10 @@ const Google = ({ informParent }) => {
   };
 
   return (
-    <div>
+    <div className="google-button-container">
       <GoogleLogin
         clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
-        buttonText="Login"
+        buttonText="Google"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
